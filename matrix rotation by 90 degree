@@ -1,0 +1,74 @@
+// character count in a string
+
+
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+void rotate90(int arr[][4],int n)
+{
+	
+	for(int layer=0;layer < n/2;layer++)
+	{
+		int first = layer;
+		int last = n-1-layer;
+
+		// for each layer
+		for(int i=first;i<last;i++)
+		{
+			int offset = i - first;
+			// store top
+			int top = arr[first][i];
+
+			// put left in top
+			arr[first][i]= arr[last - offset][first];
+			// put bot in left
+			arr[last - offset][first] = arr[last][last-offset];
+			// put right in bot
+			arr[last][last-offset] = arr[i][last];
+			// put temp in top
+			arr[i][last] = top;
+		}
+
+
+	}
+
+}
+
+
+int main()
+{
+	int arr[][4] = { {1 , 2, 3, 4},{5,6,7,8},{9,1,2,3},{4,5,6,7}};
+
+
+	for(int i=0;i<4;i++)
+	{
+		for(int j=0;j<4;j++)
+		{
+			cout<<arr[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+
+
+	cout<<"---------------"<<endl;
+
+	rotate90(arr,4);
+
+	for(int i=0;i<4;i++)
+	{
+		for(int j=0;j<4;j++)
+		{
+			cout<<arr[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+
+	getchar();
+
+	return 0;
+
+
+}
