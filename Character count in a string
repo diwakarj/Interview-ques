@@ -1,0 +1,68 @@
+#include <iostream>
+//#include <cstring>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+void compressstr(string str)
+{
+
+	const char * c = str.c_str();
+	
+	if(c==NULL) return;
+	int len = strlen(c);
+	if(len == 0) return;
+	
+
+
+	//int len = str.size();
+	string s;
+
+	char t = str[0];
+
+	//memset(cc,0,100);
+
+	int p=0;
+	int count =1;
+
+	//cc[p]=c[p];
+	//p++;
+
+	for(int i=1;i<len;++i)
+	{	if(str[i]==t)
+			count++;
+	    else
+		{
+			std::ostringstream sstream;
+			sstream<<count;
+			s+=t;
+			t=str[i];
+			s = s + sstream.str();
+				count = 1;
+	    }
+    }
+
+	     std::ostringstream sstream;
+  			sstream<<count;
+			s+=t;
+		    s = s + sstream.str();
+
+	
+	cout<<"the compressed string is :"<<s<<endl;
+}
+
+
+int main()
+{
+	//const int len = 100;
+	string str = "";
+
+	compressstr(str);
+
+	
+
+	getchar();
+
+	return 0;
+}
